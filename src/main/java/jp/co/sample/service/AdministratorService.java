@@ -29,6 +29,8 @@ public class AdministratorService {
 	}
 
 	/**
+	 * ログインする.
+	 * 
 	 * @param mailAddress メールアドレス
 	 * @param password    パスワード
 	 * @return パラメータ情報に一致する管理者情報

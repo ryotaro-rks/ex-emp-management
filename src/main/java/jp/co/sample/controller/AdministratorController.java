@@ -50,7 +50,9 @@ public class AdministratorController {
 	}
 
 	/**
-	 * @return insert.htmlへフォワード
+	 * 管理者情報登録画面へ遷移する.
+	 * 
+	 * @return 管理者情報登録画面へフォワード
 	 */
 	@RequestMapping("toInsert")
 	public String toInsert() {
@@ -72,13 +74,22 @@ public class AdministratorController {
 	}
 
 	/**
-	 * @return login.htmlへのフォワード
+	 * 管理者ログイン画面へ遷移する.
+	 * 
+	 * @return 管理者ログイン画面へのフォワード
 	 */
 	@RequestMapping("")
 	public String toLogin() {
 		return "administrator/login";
 	}
 
+	/**
+	 * 管理者用ログイン.
+	 * 
+	 * @param form  ログイン用フォーム
+	 * @param model エラーメッセージ格納用モデル
+	 * @return 従業員一覧画面へフォワード
+	 */
 	@RequestMapping("login")
 	public String login(LoginForm form, Model model) {
 		Administrator admin = administratorService.login(form.getMailAddress(), form.getPassword());

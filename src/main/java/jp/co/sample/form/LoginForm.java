@@ -1,7 +1,7 @@
 package jp.co.sample.form;
 
 /**
- * ログイン用フォーム
+ * ログイン用フォーム.
  * 
  * @author ryotaro.seya
  *
