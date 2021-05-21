@@ -49,8 +49,8 @@ public class AdministratorRepository {
 	 * @return 取得した管理者情報(存在しない場合はnullを返す)
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-		String sql = "select id, name, mailAddress, password from " + TABLE_NAME
-				+ " where mailAddress = :mailAddress and password = :password";
+		String sql = "select id, name, mail_address, password from " + TABLE_NAME
+				+ " where mail_address = :mailAddress and password = :password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",
 				password);
 		List<Administrator> adminList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
