@@ -36,7 +36,7 @@ public class AdministratorRepository {
 	 */
 	public void insert(Administrator administrator) {
 		String sql = "insert into " + TABLE_NAME
-				+ " values(id = :id, name = :name, mailAddress = :mailAddress, password = :password)";
+				+ "(name, mail_address, password) values(:name, :mailAddress, :password)";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		template.update(sql, param);
 	}
