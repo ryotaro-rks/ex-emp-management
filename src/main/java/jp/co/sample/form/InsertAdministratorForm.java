@@ -1,14 +1,12 @@
-package jp.co.sample.domain;
+package jp.co.sample.form;
 
 /**
- * 管理者用ドメインクラス.
+ * 管理者情報登録時に使用するフォーム.
  * 
  * @author ryotaro.seya
  *
  */
-public class Administrator {
-	/** id(主キー) */
-	private Integer id;
+public class InsertAdministratorForm {
 	/** 名前 */
 	private String name;
 	/** メールアドレス */
@@ -16,29 +14,10 @@ public class Administrator {
 	/** パスワード */
 	private String password;
 
-	public Administrator() {
-	}
-
-	public Administrator(Integer id, String name, String mailAddress, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.mailAddress = mailAddress;
-		this.password = password;
-	}
-
 	@Override
 	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
+		return "InsertAdministratorForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
 				+ "]";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
