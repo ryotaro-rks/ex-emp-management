@@ -28,7 +28,7 @@ public class EmployeeController {
 	}
 
 	/**
-	 * 従業員情報一覧表示
+	 * 従業員情報一覧表示.
 	 * 
 	 * @param model リクエストスコープ用
 	 * @return employee/list.htmlへのフォワード
@@ -39,10 +39,25 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
-	@RequestMapping("/showDetail")
+	/**
+	 * 従業員情報の詳細表示.
+	 * 
+	 * @param id    検索id
+	 * @param model 従業員用リクエストスコープ
+	 * @return detail.htmlへのフォワード
+	 */
+	@RequestMapping("showDetail")
 	public String showDetail(String id, Model model) {
 		Employee employee = employeeService.showDetail(Integer.parseInt(id));
 		model.addAttribute("employee", employee);
 		return "employee/detail";
+	}
+
+	@RequestMapping("update")
+	public String update(UpdateEmployeeForm form) {
+		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+		employeeService.update(employee);
+		return "redirect:/employee/showList";
 	}
 }

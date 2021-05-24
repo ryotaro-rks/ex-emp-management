@@ -31,12 +31,21 @@ public class EmployeeService {
 	}
 
 	/**
-	 * 従業員詳細検索
+	 * 従業員詳細検索.
 	 * 
 	 * @param id 検索id
 	 * @return 従業員情報
 	 */
 	public Employee showDetail(Integer id) {
 		return employeeRepository.load(id);
+	}
+
+	/**
+	 * 従業員情報更新.
+	 * 
+	 * @param employee 更新する従業員情報
+	 */
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
 	}
 }
