@@ -39,7 +39,7 @@ public class EmployeeRepository {
 	 * @return 従業員一覧情報(従業員が存在しない場合はサイズ0件のリスト)
 	 */
 	public List<Employee> findAll() {
-		String sql = "select " + ALL_COLUMN_NAME + " from " + TABLE_NAME + " order by hireDate desc";
+		String sql = "select " + ALL_COLUMN_NAME + " from " + TABLE_NAME + " order by hire_date desc";
 		return template.query(sql, EMPLOYEE_ROW_MAPPER);
 	}
 
