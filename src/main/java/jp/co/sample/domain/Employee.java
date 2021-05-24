@@ -34,8 +34,6 @@ public class Employee {
 	/** 扶養人数 */
 	private Integer dependentsCount;
 
-	/** 名前 */
-
 	public Employee() {
 	}
 

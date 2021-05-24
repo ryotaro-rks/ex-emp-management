@@ -99,7 +99,7 @@ public class AdministratorController {
 		}
 
 		session.setAttribute("administratorName", admin.getName());
-		return "forward:/employee/showList";
+		return "forward:/employee/showListLimit?pageNumber=1";
 	}
 
 	/**

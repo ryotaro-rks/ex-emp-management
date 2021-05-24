@@ -83,4 +83,23 @@ public class EmployeeRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		template.update(sql.toString(), param);
 	}
+
+	/**
+	 * 指定した行数だけテーブルからデータを取得する.
+	 *
+	 * @param limit  取得する行数
+	 * @param offSet 開始行番号
+	 * @return limitとoffSetで指定された範囲の従業員リスト
+	 */
+	public List<Employee> findAllLimit(Integer LIMIT, Integer offSet) {
+		String sql = "select " + ALL_COLUMN_NAME + " from " + TABLE_NAME + " order by hire_date desc limit " + LIMIT
+				+ " offset " + offSet;
+		return template.query(sql, EMPLOYEE_ROW_MAPPER);
+	}
+
+	public Integer getCountTable() {
+		String sql = "select count(*) from " + TABLE_NAME;
+		SqlParameterSource param = new MapSqlParameterSource();
+		return template.queryForObject(sql, param, Integer.class);
+	}
 }

@@ -48,4 +48,15 @@ public class EmployeeService {
 	public void update(Employee employee) {
 		employeeRepository.update(employee);
 	}
+
+	public List<Employee> showListLimit(Integer pageNumber) {
+		final Integer LIMIT = 10;
+		Integer offSet = (LIMIT * (pageNumber - 1) + 1);
+		return employeeRepository.findAllLimit(LIMIT, offSet);
+	}
+
+	public Integer getPageNumbers() {
+		final Integer LIMIT = 10;
+		return employeeRepository.getCountTable() / LIMIT + 1;
+	}
 }

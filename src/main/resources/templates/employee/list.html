@@ -82,9 +82,10 @@
 						</tr>
 					</tbody>
 				</table>
-
-
-
+				
+				<form method="post" th:action="@{/employee/showListLimit}">
+					<button th:each = "buttonNum : ${buttonNumbers}" th:value="${buttonNum}" th:text="${buttonNum}" name="pageNumber"></button>
+				</form>
 				<!-- ここから下を編集する必要はありません -->
 
 			</div>

@@ -1,8 +1,13 @@
 package jp.co.sample.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,11 +58,41 @@ public class EmployeeController {
 		return "employee/detail";
 	}
 
+	/**
+	 * 従業員更新.
+	 * 
+	 * @param form   従業員情報用スコープ
+	 * @param result エラー格納
+	 * @return 従業員リストへのリダイレクト
+	 */
 	@RequestMapping("update")
-	public String update(UpdateEmployeeForm form) {
+	public String update(@Validated UpdateEmployeeForm form, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			System.out.println("エラー");
+			return this.showDetail(form.getId(), model);
+		}
+
 		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
 		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
+	}
+
+	/**
+	 * 指定した数だけ従業員情報を取得. 一覧画面遷移時と画面遷移ボタンを押下際に呼ばれる.
+	 * 
+	 * @param pageNumber 画面番号. offsetの役割を持つ.
+	 * @param model      従業員情報用スコープ
+	 * @return 従業員情報一覧ページへのフォワード
+	 */
+	@RequestMapping("showListLimit")
+	public String showListLimit(Integer pageNumber, Model model) {
+		model.addAttribute("employeeList", employeeService.showListLimit(pageNumber));
+		List<Integer> buttonNumbers = new ArrayList<>();
+		for (int i = 1; i <= employeeService.getPageNumbers(); i++) {
+			buttonNumbers.add(i);
+		}
+		model.addAttribute("buttonNumbers", buttonNumbers);
+		return "employee/list";
 	}
 }
